@@ -7,11 +7,6 @@ const Calendar = ({ onDateClick }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
 
-  // useEffect(() => {
-  //   setSelectedDate(currentDate);
-  //   onDateClick(currentDate);
-  // }, []);
-
   const handleDateClick = (dayNumber) => {
     const { year, month } = getYearAndMonth();
     const date = new Date(year, month, dayNumber);
