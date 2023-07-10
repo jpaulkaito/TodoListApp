@@ -18,14 +18,12 @@ function App() {
   return (
 <div className="App">
   <div className="container">
-    <div className="row justify-content-center">
+    <div className="row">
       <div className="col-md-6">
         <Calendar onDateClick={handleDateClick} />
       </div>
-    </div>
-    {filteredItems.length > 0 ? (
-      <div className="row justify-content-center mt-4">
-        <div className="col-md-6">
+      <div className="col-md-6">
+        {filteredItems.length > 0 ? (
           <div className="card">
             <div className="card-header bg-primary text-white">
               <h2 className="card-title">
@@ -41,15 +39,11 @@ function App() {
               ))}
             </ul>
           </div>
-        </div>
-      </div>
-    ) : (
-      <div className="row justify-content-center mt-4">
-        <div className="col-md-6">
+        ) : (
           <p className="text-center">No TODO items for the selected date.</p>
-        </div>
+        )}
       </div>
-    )}
+    </div>
   </div>
 </div>
 
