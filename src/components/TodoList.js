@@ -1,51 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const TodoList = () => {
-    const [inputTask, setInputTask] = useState('');
-    const [list, setList] = useState([]);
+const TodoList = ({ selectedDate, todoItems }) => {
+  // Filter the todo items based on the selected date
+  const filteredItems = todoItems.filter(item => item.date === selectedDate.toISOString().split('T')[0]);
 
-    const handleAddTodo = () => {
-        const newTask = {
-            id: Math.random(),
-            todo: inputTask
-        };
-
-       setList([...list, newTask]);
-        setInputTask('');
-    };
-
-   const handleDeleteTodo = (id) => {
-        const newList = list.filter((todo) => todo.id !== id);
-        setList(newList);
-    };
-
-   const handleInputChange = (event) => {
-        setInputTask(event.target.value);
-    };
-
-   return (
-        <div className="Todo">
-            <h1>My To-Do List</h1>
-
-            <div className="Top">
-                <input className="input" type="text" value={inputTask}
-                   onChange={handleInputChange} placeholder="Enter a task" />
-
-                <button className="btn" onClick={handleAddTodo}>ADD</button>
-            </div>
-
-           <ul>
-                { list.map((todo) => (
-                    <li className="task" key={todo.id}>
-                        {todo.todo}
-                        <button onClick={() => handleDeleteTodo(todo.id)}>
-                           Delete
-                       </button>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+  return (
+    <div>
+      <h3>Todo List for {selectedDate.toLocaleDateString()}</h3>
+      {filteredItems.length > 0 ? (
+        <ul>
+          {filteredItems.map(item => (
+            <li key={item.id}>
+              <h4>{item.title}</h4>
+              <p>{item.description}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No todo items for this date.</p>
+      )}
+    </div>
+  );
 };
 
-export default TodoList; 
+export default TodoList;

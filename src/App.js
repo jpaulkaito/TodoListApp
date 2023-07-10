@@ -1,79 +1,59 @@
-import React from 'react';
-// import logo from './logo.svg';
-// import { Counter } from './features/counter/Counter';
+import React, { useState } from 'react';
 import './App.css';
-/*======================================================*/
+import { TODOITEMS } from './app/shared/TODOITEMS';
+import Calendar from './components/Calendar';
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <Counter />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <span>
-//           <span>Learn </span>
-//           <a
-//             className="App-link"
-//             href="https://reactjs.org/"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             React
-//           </a>
-//           <span>, </span>
-//           <a
-//             className="App-link"
-//             href="https://redux.js.org/"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             Redux
-//           </a>
-//           <span>, </span>
-//           <a
-//             className="App-link"
-//             href="https://redux-toolkit.js.org/"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             Redux Toolkit
-//           </a>
-//           ,<span> and </span>
-//           <a
-//             className="App-link"
-//             href="https://react-redux.js.org/"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             React Redux
-//           </a>
-//         </span>
-//       </header>
-//     </div>
-//   );
-// }
+function App() {
+    const [selectedDate, setSelectedDate] = useState('');
+    const [filteredItems, setFilteredItems] = useState([]);
 
-//import AddText from './features/AddText';
-// function App() {
-//   return (
-//     <div className="App">
-//       <AddText />
-//     </div>
-//   )
-// }
+    const handleDateClick = (date) => {
+        setSelectedDate(date);
+        const filtered = TODOITEMS.filter((item) => item.date === date.toISOString().split('T')[0]);
+        //const filtered = TODOITEMS.filter((item) => item.date === date.toLocaleDateString('default'));
+        setFilteredItems(filtered);
+        //console.log(date)
+    };
 
-
-import TodoList from './components/TodoList';
-
-const App = () => {
     return (
-        <div>
-            <TodoList />
+        <div className="App">
+            <div className="container">
+                <div className="row justify-content-center">
+                    <div className="col-md-6">
+                        <Calendar onDateClick={handleDateClick} />
+                    </div>
+                </div>
+                {filteredItems.length > 0 ? (
+                    <div className="row justify-content-center mt-4">
+                        <div className="col-md-6">
+                            <div className="card">
+                                <div className="card-header bg-primary text-white">
+                                    <h2 className="card-title">
+                                        TODO Items for {selectedDate.toLocaleDateString('default')}
+                                    </h2>
+                                </div>
+                                <ul className="list-group list-group-flush">
+                                    {filteredItems.map((item) => (
+                                        <div key={item.id} className="list-group-item">
+                                            <h4>{item.title}</h4>
+                                            <p>{item.description}</p>
+                                        </div>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="row justify-content-center mt-4">
+                        <div className="col-md-6">
+                            <p className="text-center text-muted">No TODO items for the selected date.</p>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
+
     );
-};
+}
 
 export default App;
