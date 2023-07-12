@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Calendar = ({ onDateClick }) => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
 
   const handleDateClick = (dayNumber) => {

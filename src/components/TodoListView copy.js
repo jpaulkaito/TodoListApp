@@ -20,7 +20,7 @@ const TodoListView = ({ selectedDate, filteredItems }) => {
           </ul>
         </div>
       ) : (
-        <p className="text-center">No TODO items for the selected date.</p>
+        <p className="text-center">No To-Do items for the selected date.</p>
       )}
     </div>
   );
