@@ -8,7 +8,7 @@ const Calendar = ({ onDateClick }) => {
     const { year, month } = getYearAndMonth();
     const date = new Date(year, month, dayNumber);
     setSelectedDate(date);
-    onDateClick(date); // Call the onDateClick prop with the selected date
+    onDateClick(date);
   };
 
   const getYearAndMonth = () => {
@@ -22,51 +22,55 @@ const Calendar = ({ onDateClick }) => {
   const firstDay = new Date(year, month, 1).getDay();
 
   return (
-<div>
-  <h2 className="text-center mb-4">Calendar for {currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })}</h2>
-  <table className="table table-bordered">
-    <thead>
-      <tr className="text-center">
-        <th className="text-danger">Sun</th>
-        <th>Mon</th>
-        <th>Tue</th>
-        <th>Wed</th>
-        <th>Thu</th>
-        <th>Fri</th>
-        <th className="text-primary">Sat</th>
-      </tr>
-    </thead>
-    <tbody>
-      {Array(Math.ceil((daysInMonth + firstDay) / 7))
-        .fill(null)
-        .map((_, weekIndex) => (
-          <tr key={`week-${weekIndex}`}>
-            {Array(7)
-              .fill(null)
-              .map((_, dayIndex) => {
-                const dayNumber = weekIndex * 7 + dayIndex + 1 - firstDay;
-                const isCurrentMonth = dayNumber > 0 && dayNumber <= daysInMonth;
-
-                return (
-                  <td key={`day-${dayNumber}`} className="text-center">
-                    {isCurrentMonth ? (
-                      <button
-                        onClick={() => handleDateClick(dayNumber)}
-                        className={`btn btn-sm ${selectedDate && selectedDate.getDate() === dayNumber ? 'btn-primary' : 'btn-light'}`}
-                      >
-                        {dayNumber}
-                      </button>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                );
-              })}
+    <div>
+      <div className="card">
+        <div className="card-header bg-primary text-white">
+          <h2 className="card-title text-center">Calendar for {currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })}</h2>
+        </div>
+      </div>
+      <table className="table table-bordered">
+        <thead>
+          <tr className="text-center">
+            <th className="text-danger">Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th className="text-primary">Sat</th>
           </tr>
-        ))}
-    </tbody>
-  </table>
-</div>
+        </thead>
+        <tbody>
+          {Array(Math.ceil((daysInMonth + firstDay) / 7))
+            .fill(null)
+            .map((_, weekIndex) => (
+              <tr key={`week-${weekIndex}`}>
+                {Array(7)
+                  .fill(null)
+                  .map((_, dayIndex) => {
+                    const dayNumber = weekIndex * 7 + dayIndex + 1 - firstDay;
+                    const isCurrentMonth = dayNumber > 0 && dayNumber <= daysInMonth;
+
+                    return (
+                      <td key={`day-${dayNumber}`} className="text-center">
+                        {isCurrentMonth ? (
+                          <button
+                            onClick={() => handleDateClick(dayNumber)}
+                            className={`btn btn-sm ${selectedDate && selectedDate.getDate() === dayNumber ? 'btn-primary' : 'btn-light'}`}
+                          >
+                            {dayNumber}
+                          </button>
+                        ) : (
+                          ''
+                        )}
+                      </td>
+                    );
+                  })}
+              </tr>
+            ))}
+        </tbody>
+      </table>
+    </div>
 
   );
 };
