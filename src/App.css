@@ -28,7 +28,7 @@ ul {
 }
 
 button {
-  width: 70px;
+  width: auto;
   height: 35px;
   background-color: sandybrown;
   border: none;

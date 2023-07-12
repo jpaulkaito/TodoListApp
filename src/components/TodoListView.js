@@ -15,6 +15,21 @@ const TodoListView = () => {
         //console.log(date)
     };
 
+    // const handleDelete = (id) => {
+    //     const updatedItems = filteredItems.filter((item) => item.id !== id);
+    //     setFilteredItems(updatedItems);
+    // };
+
+    const handleDelete = (id) => {
+        TODOITEMS.splice(
+            TODOITEMS.findIndex((item) => item.id === id),
+            1
+        );
+        setFilteredItems((prevFilteredItems) =>
+            prevFilteredItems.filter((item) => item.id !== id)
+        );
+    };
+
     return (
         <div className="container">
             <div className="row">
@@ -34,6 +49,12 @@ const TodoListView = () => {
                                     <div key={item.id} className="list-group-item">
                                         <h4>{item.title}</h4>
                                         <p>{item.description}</p>
+                                        <button
+                                            className="btn btn-danger"
+                                            onClick={() => handleDelete(item.id)}
+                                        >
+                                            Delete
+                                        </button>
                                     </div>
                                 ))}
                             </ul>
