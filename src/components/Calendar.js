@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+
 
 const Calendar = ({ onDateClick }) => {
-  const [currentDate] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
 
   const handleDateClick = (dayNumber) => {
@@ -21,11 +24,28 @@ const Calendar = ({ onDateClick }) => {
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const firstDay = new Date(year, month, 1).getDay();
 
+  const goToPreviousMonth = () => {
+    setCurrentDate(new Date(year, month - 1, 1));
+  };
+
+  const goToNextMonth = () => {
+    setCurrentDate(new Date(year, month + 1, 1));
+  };
+
   return (
     <div>
       <div className="card">
-        <div className="card-header bg-primary text-white">
-          <h2 className="card-title text-center">Calendar for {currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })}</h2>
+        <div className="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+          {/* <h2 className="card-title text-center">Calendar for {currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })}</h2> */}
+          <button className="btn btn-link text-white me-2" onClick={goToPreviousMonth}>
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </button>
+          <h2 className="card-title text-center mb-0">
+            Calendar for {currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })}
+          </h2>
+          <button className="btn btn-link text-white" onClick={goToNextMonth}>
+            <FontAwesomeIcon icon={faChevronRight} />
+          </button>
         </div>
       </div>
       <table className="table table-bordered">
