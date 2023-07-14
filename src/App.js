@@ -13,7 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<TodoListView />} />
-        <Route path='ViewAllTodoList' element={<ViewAllTodoList />} />
+        <Route path='View-all' element={<ViewAllTodoList />} />
       </Routes>
       <Footer />
     </div>

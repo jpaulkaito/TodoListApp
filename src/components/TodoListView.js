@@ -57,6 +57,7 @@ const TodoListView = () => {
       };
       TODOITEMS.push(newTask);
       setFilteredItems((prevFilteredItems) => [...prevFilteredItems, newTask]);
+      console.log(setFilteredItems);
       resetForm();
       setShowNewTaskForm(false);
     }
