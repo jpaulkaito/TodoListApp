@@ -5,13 +5,15 @@ import Calendar from './Calendar';
 //import { Formik, Form, Field, ErrorMessage } from 'formik';
 import AddTodoForm from './AddTodoForm';
 
+let nextID=TODOITEMS.length;
+
 const TodoListView = ({todoList, handleDelete, handleCreate}) => {
-  const [selectedDate, setSelectedDate] = useState(undefined);
+  const [selectedDate, setSelectedDate] = useState(undefined);//little trick from Natalie
   const [showNewTaskForm, setShowNewTaskForm] = useState(false);
   // //const [newTaskTitle, setNewTaskTitle] = useState('');
   //const [newTaskDescription, setNewTaskDescription] = useState('');
   const filteredItems = todoList.filter(
-    (item) => item.date === selectedDate?.toISOString().split('T')[0]
+    (item) => item.date === selectedDate?.toISOString().split('T')[0]//little trick from Natalie
   );
 
 
@@ -39,11 +41,12 @@ const TodoListView = ({todoList, handleDelete, handleCreate}) => {
   const handleAddNewTask = (values, { resetForm }) => {
     if (values.newTaskTitle && values.newTaskDescription && selectedDate) {
       const newTask = {
-        id: TODOITEMS.length + 1,
+        id: nextID++,
         title: values.newTaskTitle,
         description: values.newTaskDescription,
         date: selectedDate.toISOString().split('T')[0],
       };
+      console.log(newTask.id);
       handleCreate(newTask);
       resetForm();
       setShowNewTaskForm(false);
