@@ -5,30 +5,19 @@ import Calendar from './Calendar';
 //import { Formik, Form, Field, ErrorMessage } from 'formik';
 import AddTodoForm from './AddTodoForm';
 
-const TodoListView = () => {
-  const [selectedDate, setSelectedDate] = useState('');
-  const [filteredItems, setFilteredItems] = useState([]);
+const TodoListView = ({todoList, handleDelete, handleCreate}) => {
+  const [selectedDate, setSelectedDate] = useState(undefined);
   const [showNewTaskForm, setShowNewTaskForm] = useState(false);
-  //const [newTaskTitle, setNewTaskTitle] = useState('');
+  // //const [newTaskTitle, setNewTaskTitle] = useState('');
   //const [newTaskDescription, setNewTaskDescription] = useState('');
+  const filteredItems = todoList.filter(
+    (item) => item.date === selectedDate?.toISOString().split('T')[0]
+  );
+
 
   const handleDateClick = (date) => {
     setSelectedDate(date);
-    const filtered = TODOITEMS.filter(
-      (item) => item.date === date.toISOString().split('T')[0]
-    );
-    setFilteredItems(filtered);
     setShowNewTaskForm(false);
-  };
-
-  const handleDelete = (id) => {
-    TODOITEMS.splice(
-      TODOITEMS.findIndex((item) => item.id === id),
-      1
-    );
-    setFilteredItems((prevFilteredItems) =>
-      prevFilteredItems.filter((item) => item.id !== id)
-    );
   };
 
   // const handleAddNewTask = () => {
@@ -55,9 +44,7 @@ const TodoListView = () => {
         description: values.newTaskDescription,
         date: selectedDate.toISOString().split('T')[0],
       };
-      TODOITEMS.push(newTask);
-      setFilteredItems((prevFilteredItems) => [...prevFilteredItems, newTask]);
-      console.log(setFilteredItems);
+      handleCreate(newTask);
       resetForm();
       setShowNewTaskForm(false);
     }

@@ -1,12 +1,10 @@
 import React from 'react';
-import { TODOITEMS } from '../app/shared/TODOITEMS';
+// import { TODOITEMS } from '../app/shared/TODOITEMS';
 
-const ViewAllTodoList = () => {
-    // Create an object to store merged and sorted items by date
+const ViewAllTodoList = ({todoList, handleDelete}) => {
     const mergedItems = {};
 
-    // Merge items with the same date
-    TODOITEMS.forEach((item) => {
+    todoList.forEach((item) => {
         if (!mergedItems[item.date]) {
             mergedItems[item.date] = [item];
         } else {
@@ -14,7 +12,6 @@ const ViewAllTodoList = () => {
         }
     });
 
-    // Sort the dates in ascending order
     const sortedDates = Object.keys(mergedItems).sort((a, b) => new Date(a) - new Date(b));
 
     return (
@@ -30,6 +27,9 @@ const ViewAllTodoList = () => {
                                         <div className="card-body">
                                             <h5 className="card-title">{item.title}</h5>
                                             <p className="card-text">{item.description}</p>
+                                            <button className="btn btn-danger" onClick={() => handleDelete(item.id)} >
+                        Delete
+                      </button>
                                         </div>
                                     </div>
                                 ))}
