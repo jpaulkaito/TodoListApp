@@ -1,7 +1,8 @@
 import React from 'react';
 // import { TODOITEMS } from '../app/shared/TODOITEMS';
+import EditTodoForm from './EditTodoForm';
 
-const ViewAllTodoList = ({ todoList, handleDelete }) => {
+const ViewAllTodoList = ({ todoList, handleDelete, handleUpdate}) => {
     const mergedItems = {};
 
     todoList.forEach((item) => {
@@ -27,9 +28,12 @@ const ViewAllTodoList = ({ todoList, handleDelete }) => {
                                         <div className="card-body">
                                             <h5 className="card-title">{item.title}</h5>
                                             <p className="card-text">{item.description}</p>
-                                            <button className="btn btn-danger" onClick={() => handleDelete(item.id)} >
-                                                Delete
-                                            </button>
+                                            <div className="button-group">
+                                                <button className="btn btn-danger" onClick={() => handleDelete(item.id)} >
+                                                    Delete
+                                                </button>
+                                                <EditTodoForm todoList={item} handleUpdate={handleUpdate}/>
+                                            </div>
                                         </div>
                                     </div>
                                 ))}

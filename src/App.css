@@ -73,6 +73,11 @@ li:before {
   margin-right: 5px;
 } */
 
+.button-group button{
+  /* margin-top: 10px; */
+  margin: 0 5px;
+}
+
 .navbar-brand {
   max-width: 4rem;
   margin-right: 2rem;
