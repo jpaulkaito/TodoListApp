@@ -1,12 +1,13 @@
-import { Routes, Route } from 'react-router-dom';
 import React, { useState } from 'react';
-import './App.css';
-import TodoListView from './components/TodoListView';
-import ViewAllTodoList from './components/ViewAllTodoList';
-// import ViewAllTodoListtest from './components/ViewAllTodoListtest';
+import { Routes, Route } from 'react-router-dom';
+import { TODOITEMS } from './app/shared/TODOITEMS';
+import HomePage from './pages/HomePage';
+import ViewAllTodoPage from './pages/ViewAllTodoPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { TODOITEMS } from './app/shared/TODOITEMS';
+import './App.css';
 
 
 function App() {
@@ -40,22 +41,28 @@ function App() {
       <Routes>
         <Route path='/'
           element={
-            <TodoListView 
+            <HomePage
               todoList={todoList}
               handleDelete={handleDelete}
               handleCreate={handleCreate}
               handleUpdate={handleUpdate}
             />
-          } 
+          }
         />
-        <Route path='View-all' 
+        <Route path='View-all'
           element={
-            <ViewAllTodoList 
-              todoList={todoList} 
-              handleDelete={handleDelete} 
-              handleUpdate={handleUpdate} 
+            <ViewAllTodoPage
+              todoList={todoList}
+              handleDelete={handleDelete}
+              handleUpdate={handleUpdate}
             />
-          } 
+          }
+        />
+        <Route path='About'
+          element={ <AboutPage /> }
+        />
+        <Route path='Contact'
+          element={ <ContactPage /> }
         />
       </Routes>
       <Footer />

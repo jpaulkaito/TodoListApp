@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { FormGroup, Label } from 'reactstrap';
-import { validateForm } from '../../src/utils/validateForm';
+import { validateForm } from '../utils/validateForm';
 
 const EditTodoForm = ({ todoList, handleUpdate }) => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -12,10 +12,11 @@ const EditTodoForm = ({ todoList, handleUpdate }) => {
                 id: todoList.id,
                 title: values.newTaskTitle,
                 description: values.newTaskDescription,
-                completed: values.newTaskStatus,
+                completed: values.newTaskStatus === 'Pending' ? false : true,
                 date: values.date
             };
-            console.log(updateTodo);
+            //console.log(values.newTaskStatus);
+            //console.log(updateTodo);
             handleUpdate(updateTodo);
             setModalOpen(false);
         }
@@ -36,7 +37,7 @@ const EditTodoForm = ({ todoList, handleUpdate }) => {
                             date: todoList.date,
                             newTaskTitle: todoList.title,
                             newTaskDescription: todoList.description,
-                            newTaskStatus: todoList.completed ? 'Completed' : 'Pending',
+                            newTaskStatus: todoList.completed ? "Completed" : "Pending",
                         }}
                         onSubmit={handleSubmit}
                         validate={validateForm}
@@ -70,12 +71,12 @@ const EditTodoForm = ({ todoList, handleUpdate }) => {
                             <FormGroup>
                                 <Label htmlFor='newTaskStatus'>Status</Label>
                                 <Field
-                                    name='contactType'
+                                    name='newTaskStatus'
                                     as='select'
                                     className='form-control'
                                 >
-                                    <option value={false}>Pending</option>
-                                    <option value={true}>Completed</option>
+                                    <option>Pending</option>
+                                    <option>Completed</option>
                                 </Field>
                             </FormGroup>
                             <FormGroup>

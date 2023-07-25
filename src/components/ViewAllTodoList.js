@@ -1,8 +1,7 @@
 import React from 'react';
-// import { TODOITEMS } from '../app/shared/TODOITEMS';
-import EditTodoForm from './EditTodoForm';
+import EditTodoForm from '../forms/EditTodoForm';
 
-const ViewAllTodoList = ({ todoList, handleDelete, handleUpdate}) => {
+const ViewAllTodoList = ({ todoList, handleDelete, handleUpdate }) => {
     const mergedItems = {};
 
     todoList.forEach((item) => {
@@ -14,7 +13,6 @@ const ViewAllTodoList = ({ todoList, handleDelete, handleUpdate}) => {
     });
 
     const sortedDates = Object.keys(mergedItems).sort((a, b) => new Date(a) - new Date(b));
-
     return (
         <div>
             {sortedDates.length > 0 ? (
@@ -28,11 +26,19 @@ const ViewAllTodoList = ({ todoList, handleDelete, handleUpdate}) => {
                                         <div className="card-body">
                                             <h5 className="card-title">{item.title}</h5>
                                             <p className="card-text">{item.description}</p>
+                                            <p>
+                                                <strong>Status: </strong>
+                                                <span
+                                                    className={item.completed ? 'completed' : 'pending'}
+                                                >
+                                                    {item.completed ? 'Completed' : 'Pending'}
+                                                </span>
+                                            </p>
                                             <div className="button-group">
                                                 <button className="btn btn-danger" onClick={() => handleDelete(item.id)} >
                                                     Delete
                                                 </button>
-                                                <EditTodoForm todoList={item} handleUpdate={handleUpdate}/>
+                                                <EditTodoForm todoList={item} handleUpdate={handleUpdate} />
                                             </div>
                                         </div>
                                     </div>

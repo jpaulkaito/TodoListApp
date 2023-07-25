@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Container } from 'reactstrap';
 import { TODOITEMS } from '../app/shared/TODOITEMS';
 import Calendar from './Calendar';
-import AddTodoForm from './AddTodoForm';
-import EditTodoForm from './EditTodoForm';
+import AddTodoForm from '../forms/AddTodoForm';
+import EditTodoForm from '../forms/EditTodoForm';
 
 let nextID = TODOITEMS.length;
 
@@ -26,7 +26,7 @@ const TodoListView = ({ todoList, handleDelete, handleCreate, handleUpdate }) =>
         id: nextID++,
         title: values.newTaskTitle,
         description: values.newTaskDescription,
-        completed: false,
+        status: 'Pending',
         date: selectedDate.toISOString().split('T')[0],
       };
       console.log(newTask.id);
@@ -73,7 +73,11 @@ const TodoListView = ({ todoList, handleDelete, handleCreate, handleUpdate }) =>
                       <p>{item.description}</p>
                       <p>
                         <strong>Status: </strong>
-                        {item.completed ? 'Completed' : 'Not Completed'}
+                        <span
+                          className={item.completed ? 'completed' : 'pending'}
+                        >
+                          {item.completed ? 'Completed' : 'Pending'}
+                        </span>
                       </p>
                       <div className="button-group">
                         <button

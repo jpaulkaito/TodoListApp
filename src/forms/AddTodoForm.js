@@ -8,7 +8,7 @@ const AddTodoForm = ({ handleAddNewTask, validateForm }) => {
       initialValues={{
         newTaskTitle: '',
         newTaskDescription: '',
-        newTaskCompleted: false
+        newTaskStatus: 'Pending'
       }}
       onSubmit={handleAddNewTask}
       validate={validateForm}
