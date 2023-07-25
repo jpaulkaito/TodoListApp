@@ -7,7 +7,8 @@ const AddTodoForm = ({ handleAddNewTask, validateForm }) => {
     <Formik
       initialValues={{
         newTaskTitle: '',
-        newTaskDescription: ''
+        newTaskDescription: '',
+        newTaskCompleted: false
       }}
       onSubmit={handleAddNewTask}
       validate={validateForm}

@@ -4,7 +4,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { FormGroup, Label } from 'reactstrap';
 import { validateForm } from '../../src/utils/validateForm';
 
-const EditTodoForm = ({ todoList, handleUpdate}) => {
+const EditTodoForm = ({ todoList, handleUpdate }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const handleSubmit = (values) => {
         if (values.newTaskTitle && values.newTaskDescription && values.date) {
@@ -12,7 +12,7 @@ const EditTodoForm = ({ todoList, handleUpdate}) => {
                 id: todoList.id,
                 title: values.newTaskTitle,
                 description: values.newTaskDescription,
-                Completed: false,
+                completed: values.newTaskStatus,
                 date: values.date
             };
             console.log(updateTodo);
@@ -35,7 +35,8 @@ const EditTodoForm = ({ todoList, handleUpdate}) => {
                         initialValues={{
                             date: todoList.date,
                             newTaskTitle: todoList.title,
-                            newTaskDescription: todoList.description
+                            newTaskDescription: todoList.description,
+                            newTaskStatus: todoList.completed ? 'Completed' : 'Pending',
                         }}
                         onSubmit={handleSubmit}
                         validate={validateForm}
@@ -50,8 +51,7 @@ const EditTodoForm = ({ todoList, handleUpdate}) => {
                                     as='input'
                                     type='date'
                                     className='form-control'
-                                >
-                                </Field>
+                                />
                             </FormGroup>
                             <FormGroup>
                                 <Label htmlFor='newTaskTitle'>
@@ -68,8 +68,19 @@ const EditTodoForm = ({ todoList, handleUpdate}) => {
                                 </ErrorMessage>
                             </FormGroup>
                             <FormGroup>
+                                <Label htmlFor='newTaskStatus'>Status</Label>
+                                <Field
+                                    name='contactType'
+                                    as='select'
+                                    className='form-control'
+                                >
+                                    <option value={false}>Pending</option>
+                                    <option value={true}>Completed</option>
+                                </Field>
+                            </FormGroup>
+                            <FormGroup>
                                 <Label htmlFor='newTaskDescription'>
-                                    Comment
+                                    Description
                                 </Label>
                                 <Field
                                     as="textarea"
