@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Container } from 'reactstrap';
+import React, { useState, useEffect } from 'react';
 import { TODOITEMS } from '../app/shared/TODOITEMS';
 import Calendar from './Calendar';
 import AddTodoForm from '../forms/AddTodoForm';
@@ -10,16 +9,29 @@ let nextID = TODOITEMS.length;
 const TodoListView = ({ todoList, handleDelete, handleCreate, handleUpdate }) => {
   const [selectedDate, setSelectedDate] = useState(undefined);//little trick from Natalie
   const [showNewTaskForm, setShowNewTaskForm] = useState(false);
+  const [todayDate, setTodayDate] = useState('');
+
+  useEffect(() => {
+    const currentDate = new Date();
+    const currentDate2 = new Date();
+    currentDate.setDate(currentDate.getDate()-1);
+    setSelectedDate(currentDate);
+    setShowNewTaskForm(false);
+    currentDate2.setDate(currentDate2.getDate());
+    setTodayDate(currentDate2.toLocaleDateString('default'));
+  }, []);
+
   const filteredItems = todoList.filter(
     (item) => item.date === selectedDate?.toISOString().split('T')[0]//little trick from Natalie
   );
 
-
   const handleDateClick = (date) => {
+    setTodayDate('');
     setSelectedDate(date);
     setShowNewTaskForm(false);
   };
 
+  
   const handleAddNewTask = (values, { resetForm }) => {
     if (values.newTaskTitle && values.newTaskDescription && selectedDate) {
       const newTask = {
@@ -52,7 +64,6 @@ const TodoListView = ({ todoList, handleDelete, handleCreate, handleUpdate }) =>
 
 
   return (
-    <Container>
       <div className="container">
         <div className="row">
           <div className="col-md-6">
@@ -63,7 +74,7 @@ const TodoListView = ({ todoList, handleDelete, handleCreate, handleUpdate }) =>
               <div className="card">
                 <div className="card-header bg-primary text-white">
                   <h2 className="card-title">
-                    To-Do Items for {selectedDate.toLocaleDateString('default')}
+                    To-Do Items for {todayDate ? todayDate : selectedDate.toLocaleDateString('default')}
                   </h2>
                 </div>
                 <ul className="list-group list-group-flush">
@@ -130,7 +141,6 @@ const TodoListView = ({ todoList, handleDelete, handleCreate, handleUpdate }) =>
           </div>
         </div>
       </div>
-    </Container>
   );
 };
 

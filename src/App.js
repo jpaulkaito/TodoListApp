@@ -4,6 +4,7 @@ import { TODOITEMS } from './app/shared/TODOITEMS';
 import HomePage from './pages/HomePage';
 import ViewAllTodoPage from './pages/ViewAllTodoPage';
 import AboutPage from './pages/AboutPage';
+import SearchPage from './pages/SearchPage';
 import ContactPage from './pages/ContactPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -57,6 +58,9 @@ function App() {
               handleUpdate={handleUpdate}
             />
           }
+        />
+        <Route path='Search'
+          element={ <SearchPage /> }
         />
         <Route path='About'
           element={ <AboutPage /> }

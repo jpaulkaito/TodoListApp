@@ -1,7 +1,7 @@
 import { Container } from 'reactstrap';
 import TodoListView from '../components/TodoListView';
 
-const ViewAllTodoPage = ({ todoList, handleDelete, handleCreate, handleUpdate }) => {
+const HomePage = ({ todoList, handleDelete, handleCreate, handleUpdate }) => {
     return (
         <Container className="mt-5">
             <TodoListView
@@ -14,4 +14,4 @@ const ViewAllTodoPage = ({ todoList, handleDelete, handleCreate, handleUpdate })
     )
 }
 
-export default ViewAllTodoPage;
+export default HomePage;
