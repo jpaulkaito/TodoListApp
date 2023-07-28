@@ -9,16 +9,16 @@ let nextID = TODOITEMS.length + 1;
 const TodoListView = ({ todoList, handleDelete, handleCreate, handleUpdate }) => {
   const [selectedDate, setSelectedDate] = useState(undefined);//little trick from Natalie
   const [showNewTaskForm, setShowNewTaskForm] = useState(false);
-  const [todayDate, setTodayDate] = useState('');
+//  const [todayDate, setTodayDate] = useState('');
 
   useEffect(() => {
     const currentDate = new Date();
-    const currentDate2 = new Date();
-    currentDate.setDate(currentDate.getDate()-1);
+//    const currentDate2 = new Date();
+    currentDate.setDate(currentDate.getDate());
     setSelectedDate(currentDate);
     setShowNewTaskForm(false);
-    currentDate2.setDate(currentDate2.getDate());
-    setTodayDate(currentDate2.toLocaleDateString('default'));
+//    currentDate2.setDate(currentDate2.getDate());
+//    setTodayDate(currentDate2.toLocaleDateString('default'));
   }, []);
 
   const filteredItems = todoList.filter(
@@ -26,7 +26,7 @@ const TodoListView = ({ todoList, handleDelete, handleCreate, handleUpdate }) =>
   );
 
   const handleDateClick = (date) => {
-    setTodayDate('');
+//    setTodayDate('');
     setSelectedDate(date);
     setShowNewTaskForm(false);
   };
@@ -74,8 +74,9 @@ const TodoListView = ({ todoList, handleDelete, handleCreate, handleUpdate }) =>
               <div className="card">
                 <div className="card-header bg-primary text-white">
                   <h2 className="card-title">
-                    To-Do Items for {todayDate ? todayDate : selectedDate.toLocaleDateString('default')}
-                  </h2>
+                    {/* To-Do Items for {todayDate ? todayDate : selectedDate.toLocaleDateString('default')} */}
+                    To-Do Items for {selectedDate.toLocaleDateString('default')}
+                    </h2>
                 </div>
                 <ul className="list-group list-group-flush">
                   {filteredItems.map((item) => (

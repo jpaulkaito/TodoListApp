@@ -21,7 +21,8 @@ const SearchTodoList = ({ todoList, handleDelete, handleUpdate }) => {
       (item) =>
         item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.date.toLowerCase().includes(searchTerm.toLowerCase())
+        item.date.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.status.toLowerCase().includes(searchTerm.toLowerCase())
     );
   });
 
