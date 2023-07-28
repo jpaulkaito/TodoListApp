@@ -4,7 +4,7 @@ import Calendar from './Calendar';
 import AddTodoForm from '../forms/AddTodoForm';
 import EditTodoForm from '../forms/EditTodoForm';
 
-let nextID = TODOITEMS.length;
+let nextID = TODOITEMS.length + 1;
 
 const TodoListView = ({ todoList, handleDelete, handleCreate, handleUpdate }) => {
   const [selectedDate, setSelectedDate] = useState(undefined);//little trick from Natalie
