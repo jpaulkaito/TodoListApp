@@ -125,11 +125,11 @@ li:before {
   margin-top: 2rem;
 }
 
-.completed {
+.Completed {
   color: rgb(0, 208, 0);
 }
 
-.pending {
+.Pending {
   color: orange;
 }
 /*========================================================*/

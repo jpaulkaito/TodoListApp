@@ -28,10 +28,11 @@ const ViewAllTodoList = ({ todoList, handleDelete, handleUpdate }) => {
                                             <p className="card-text">{item.description}</p>
                                             <p>
                                                 <strong>Status: </strong>
+                                                <strong>Status: </strong>
                                                 <span
-                                                    className={item.completed ? 'completed' : 'pending'}
+                                                    className={item.status === 'Completed' ? 'Completed' : 'Pending'}
                                                 >
-                                                    {item.completed ? 'Completed' : 'Pending'}
+                                                    {item.status}
                                                 </span>
                                             </p>
                                             <div className="button-group">

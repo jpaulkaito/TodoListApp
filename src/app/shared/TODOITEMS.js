@@ -17,7 +17,7 @@ export const TODOITEMS = [
         id: 2,
         title: 'Buy Groceries',
         description: 'Buy groceries for the week',
-        status: 'Pending',
+        status: 'Completed',
         date: '2023-07-30',
       },
       {

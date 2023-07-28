@@ -12,7 +12,7 @@ const EditTodoForm = ({ todoList, handleUpdate }) => {
                 id: todoList.id,
                 title: values.newTaskTitle,
                 description: values.newTaskDescription,
-                completed: values.newTaskStatus === 'Pending' ? false : true,
+                status: values.newTaskStatus === 'Pending' ? 'Pending' : 'Completed',
                 date: values.date
             };
             //console.log(values.newTaskStatus);
@@ -37,7 +37,7 @@ const EditTodoForm = ({ todoList, handleUpdate }) => {
                             date: todoList.date,
                             newTaskTitle: todoList.title,
                             newTaskDescription: todoList.description,
-                            newTaskStatus: todoList.completed ? "Completed" : "Pending",
+                            newTaskStatus: todoList.status === 'Completed' ? "Completed" : "Pending",
                         }}
                         onSubmit={handleSubmit}
                         validate={validateForm}

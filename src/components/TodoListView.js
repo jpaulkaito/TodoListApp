@@ -85,9 +85,9 @@ const TodoListView = ({ todoList, handleDelete, handleCreate, handleUpdate }) =>
                       <p>
                         <strong>Status: </strong>
                         <span
-                          className={item.completed ? 'completed' : 'pending'}
+                          className={item.status === 'Completed' ? 'Completed' : 'Pending'}
                         >
-                          {item.completed ? 'Completed' : 'Pending'}
+                          {item.status}
                         </span>
                       </p>
                       <div className="button-group">
