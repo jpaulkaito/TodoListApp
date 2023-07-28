@@ -22,12 +22,6 @@ const EditTodoForm = ({ todoList, handleUpdate }) => {
         }
     }
 
-    const statusOptions = {
-        Pending: 'yellow', // Change 'yellow' to your desired color
-        Completed: 'green', // Change 'green' to your desired color
-      };
-      
-
     return (
         <>
             <button className="btn btn-primary mr-10" onClick={() => setModalOpen(true)}>
