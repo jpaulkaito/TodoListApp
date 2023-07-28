@@ -15,7 +15,6 @@ Welcome to My Monthly To-Do App! This is a simple and user-friendly to-do list a
 
 ## Features
 - Add new tasks with titles and descriptions
-- Set due dates for tasks
 - View a monthly calendar to organize tasks by date
 - Mark tasks as completed
 - Edit or delete tasks as needed
