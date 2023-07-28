@@ -60,13 +60,18 @@ function App() {
           }
         />
         <Route path='Search'
-          element={ <SearchPage /> }
+          element={<SearchPage
+            todoList={todoList}
+            handleDelete={handleDelete}
+            handleUpdate={handleUpdate}
+        />
+          }
         />
         <Route path='About'
-          element={ <AboutPage /> }
+          element={<AboutPage />}
         />
         <Route path='Contact'
-          element={ <ContactPage /> }
+          element={<ContactPage />}
         />
       </Routes>
       <Footer />
