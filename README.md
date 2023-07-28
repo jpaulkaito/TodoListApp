@@ -10,6 +10,7 @@ Welcome to My Monthly To-Do App! This is a simple and user-friendly to-do list a
   - [Installation](#installation)
   - [Usage](#usage)
 - [How it Works](#how-it-works)
+- [Search Functionality](#search-functionality)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -51,6 +52,10 @@ The app will be accessible at `http://localhost:3000` in your web browser.
 4. To mark a task as completed, simply click the checkbox next to it.
 5. To edit or delete a task, click the corresponding icons next to the task.
 6. Use the navigation arrows to switch between different months.
+
+## Search Functionality
+New Feature: Search Tasks
+We've added a search functionality to help you find specific tasks easily. When you type in the search box, the app will dynamically update the task list to display only those tasks that match your search criteria.
 
 ## Contributing
 Contributions to improve My Monthly To-Do App are welcome! If you have any suggestions, bug fixes, or new features to add, feel free to create a pull request.
