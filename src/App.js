@@ -40,7 +40,7 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        <Route path='/'
+        <Route path='TodoListApp/'
           element={
             <HomePage
               todoList={todoList}
@@ -50,7 +50,7 @@ function App() {
             />
           }
         />
-        <Route path='View-all'
+        <Route path='TodoListApp/View-all'
           element={
             <ViewAllTodoPage
               todoList={todoList}
@@ -59,7 +59,7 @@ function App() {
             />
           }
         />
-        <Route path='Search'
+        <Route path='TodoListApp/Search'
           element={<SearchPage
             todoList={todoList}
             handleDelete={handleDelete}
@@ -67,10 +67,10 @@ function App() {
         />
           }
         />
-        <Route path='About'
+        <Route path='TodoListApp/About'
           element={<AboutPage />}
         />
-        <Route path='Contact'
+        <Route path='TodoListApp/Contact'
           element={<ContactPage />}
         />
       </Routes>
